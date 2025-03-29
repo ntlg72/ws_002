@@ -49,7 +49,8 @@ class Params:
     ## Database connection params
     user = os.getenv('DB_USERNAME')
     password = os.getenv('DB_PASSWORD')
-    host = 'localhost'
-    database = "test_name"
+    host = os.getenv('DB_HOST')
+    database = os.getenv('DB_DATABASE')
+    port = os.getenv('DB_PORT')
 
 	

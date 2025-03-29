@@ -1,65 +1,71 @@
-import logging
+from datetime import datetime
+from airflow import DAG
+from airflow.operators.python import PythonOperator
+from src.nodes.data_gathering import read_db, read_csv
+from src.nodes.data_transform import transform_db, transform_csv, merge_data
+from src.nodes.data_storage import load_data, store_data
 
-from client import Client
-from nodes import data_gathering
-from nodes import data_preparation
-from nodes import data_storage
-from nodes import data_transform
-from nodes import data_viz
-from params import Params 
+default_args = {
+    'owner': 'airflow',
+    'depends_on_past': False,
+    'start_date': datetime(2025, 1, 1),
+    'retries': 1,
+}
 
+with DAG(
+    'spotify_grammys_etl',
+    default_args=default_args,
+    description='ETL pipeline for Spotify and Grammys data',
+    schedule_interval='@daily',
+    catchup=False,
+) as dag:
 
-def process(client, params):  
-    """
-    The ETL pipeline.
-    
-    It contains the main nodes of the extract-transform-load 
-    pipeline from the process. 
-    
-    Parameters
-    ----------
-    
-    client: Client
-    parmas: Params
-    
-    Notes 
-    -----
-    The main idea is to consider each task as a conceptual **node**. 
-    This function, `process` is the **pipeline** that integrates all 
-    tasks together. Each node is a .py file imported from the `nodes`
-    directory. 
-    
-    The main idea is that each node can be in one of the following state:
-        - up-to-date: the task to be done given the input parameters is 
-        already completed. Hence, no rework is needed.
+    read_db_task = PythonOperator(
+        task_id='read_db',
+        python_callable=read_db,
+    )
 
-        - out-of-date: the task to be done is not completed and should be 
-        run.
+    transform_db_task = PythonOperator(
+        task_id='transform_db',
+        python_callable=transform_db,
+    )
 
-    """
-    data_preparation.run(client, params)
+    read_csv_task = PythonOperator(
+        task_id='read_csv',
+        python_callable=read_csv,
+    )
 
-    if not data_gathering.done(client, params):
-        data_gathering.update(client, params)
+    transform_csv_task = PythonOperator(
+        task_id='transform_csv',
+        python_callable=transform_csv,
+    )
 
-    if not data_transform.done(client, params):
-        data_transform.update(client, params)
+    extract_task = PythonOperator(
+        task_id='extract',
+        python_callable=lambda: print("Extracting common features"),
+    )
 
-    if not data_storage.done(client, params):
-        data_storage.update(client, params)
+    transform_task = PythonOperator(
+        task_id='transform',
+        python_callable=lambda: print("Transforming combined data"),
+    )
 
-    if not data_viz.done(client, params):
-        data_viz.update(client, params)
+    merge_task = PythonOperator(
+        task_id='merge',
+        python_callable=merge_data,
+    )
 
+    load_task = PythonOperator(
+        task_id='load',
+        python_callable=load_data,
+    )
 
-if __name__ == '__main__': 
+    store_task = PythonOperator(
+        task_id='store',
+        python_callable=store_data,
+    )
 
-    params = Params()
-
-    logging.basicConfig(filename=params.log_name,
-                    level=logging.INFO,
-                    format='%(asctime)s.%(msecs)03d %(levelname)s %(module)s - %(funcName)s: %(message)s',
-                    datefmt='%Y-%m-%d %H:%M:%S')
-
-    client = Client(params)
-    process(client, params)
+    # Define task dependencies
+    read_db_task >> transform_db_task >> extract_task
+    read_csv_task >> transform_csv_task >> extract_task
+    extract_task >> transform_task >> merge_task >> load_task >> store_task

@@ -5,28 +5,43 @@ import os
 logger = logging.getLogger('client.py')
 
 
-class Client:
-    """
-    Connection to the database. 
+from sqlalchemy import create_engine
+from sqlalchemy.exc import SQLAlchemyError
+import logging
 
-    The current implementation only refers to the PostgreSQL 
-    database, however, this could be easily enhanced to any 
-    database at all, including cloud.
+logger = logging.getLogger(__name__)
+
+class DatabaseClient:
+    """
+    A database client using SQLAlchemy for PostgreSQL connections.
     """
 
     def __init__(self, params):
         """
-        Connect to the database.
-
-        Use the information contained in the params.py file 
-        to connect to the postgreSQL database.
+        Initialize the database connection.
         """
-
-
         try:
-            self.engine = create_engine(f'postgresql+psycopg2://{params.user}:{params.password}@{params.host}/{params.database}')
+            # Create the SQLAlchemy engine
+            self.engine = create_engine(
+                f'postgresql+psycopg2://{params.user}:{params.password}@{params.host}:{params.port}/{params.database}'
+            )
+            # Test the connection
             self.conn = self.engine.connect()
-        except Exception as e:
-            logger.warning('Could not connect to the database on client.py file.')
-            logger.warning('Verify your credentials for {params.user}.')
-            logger.warning(e)
+            logging.info('Successfully connected to the database.')
+        except SQLAlchemyError as e:
+            logger.error('Failed to connect to the database.')
+            logger.error(f'Error details: {e}')
+
+    def close(self):
+        """
+        Close the database connection.
+        """
+        try:
+            if hasattr(self, 'conn') and self.conn:
+                self.conn.close()
+                logging.info('Connection to database closed successfully.')
+            else:
+                logging.warning('No active connection to close.')
+        except SQLAlchemyError as e:
+            logger.error('Failed to close the database connection.')
+            logger.error(f'Error details: {e}')
