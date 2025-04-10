@@ -1,7 +1,6 @@
-from dotenv import load_dotenv, find_dotenv
-from pandas import DataFrame
+from dotenv import load_dotenv
 import os 
-
+from pathlib import Path
 
 class Params:
     """
@@ -54,3 +53,6 @@ class Params:
     port = os.getenv('DB_PORT')
 
 	
+    BASE_DIR = Path(__file__).resolve().parent.parent
+    DATA_DIR = BASE_DIR / 'data'
+    SPOTIFY_DATASET_PATH = DATA_DIR / 'external' / 'spotify_dataset.csv'

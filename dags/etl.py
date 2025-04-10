@@ -1,13 +1,17 @@
 from datetime import datetime, timedelta
 from airflow import DAG
 from airflow.operators.python import PythonOperator
-import sys, os
+import sys
+import os
 
 # Agregar src al path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-# Importar funciones de extracción
+# Importar funciones y parámetros
 from src.etl.extraction import load_local_csv, read_table_from_db, process_audio_dataset
+from src.params import Params
+
+params = Params()  # Instancia para acceder a rutas
 
 default_args = {
     'owner': 'airflow',
@@ -30,7 +34,7 @@ with DAG(
     read_csv = PythonOperator(
         task_id='read_csv',
         python_callable=load_local_csv,
-        op_kwargs={'csv_path': '../data/external/spotify_dataset.csv'},
+        op_kwargs={'csv_path': str(params.SPOTIFY_DATASET_PATH)},  # ← ahora usando params
     )
 
     read_db = PythonOperator(
@@ -44,5 +48,4 @@ with DAG(
         python_callable=process_audio_dataset,
     )
 
-    # Secuencia: puedes correrlas en paralelo o en serie
     [read_csv, read_db, read_api]
