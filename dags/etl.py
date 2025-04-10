@@ -1,5 +1,3 @@
-# dags/etl_full_extraction_dag.py
-
 from datetime import datetime, timedelta
 from airflow import DAG
 from airflow.operators.python import PythonOperator
