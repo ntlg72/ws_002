@@ -15,36 +15,6 @@
     "error": null
   },
   {
-    "nominee": "Bad Guy",
-    "features": {
-      "acousticness": 0.6986,
-      "danceability": 0.6329,
-      "energy": 0.1706,
-      "instrumentalness": 0.0383,
-      "liveness": 0.1547,
-      "loudness": -22.596,
-      "speechiness": 0.2376,
-      "tempo": 103.9933,
-      "valence": 0.3587
-    },
-    "error": null
-  },
-  {
-    "nominee": "This Is America",
-    "features": {
-      "acousticness": 0.9028,
-      "danceability": 0.5238,
-      "energy": 0.2993,
-      "instrumentalness": 0.0077,
-      "liveness": 0.2014,
-      "loudness": -13.8596,
-      "speechiness": 0.1889,
-      "tempo": 91.1617,
-      "valence": 0.6618
-    },
-    "error": null
-  },
-  {
     "nominee": "This Is America",
     "features": {
       "acousticness": 0.9028,
@@ -105,21 +75,6 @@
     "error": null
   },
   {
-    "nominee": "Hello",
-    "features": {
-      "acousticness": 0.5035,
-      "danceability": 0.227,
-      "energy": 0.2031,
-      "instrumentalness": 0.055,
-      "liveness": 0.1949,
-      "loudness": -25.8341,
-      "speechiness": 0.0906,
-      "tempo": 70.9526,
-      "valence": 0.0736
-    },
-    "error": null
-  },
-  {
     "nominee": "Uptown Funk",
     "features": {
       "acousticness": 0.23,
@@ -151,18 +106,33 @@
   },
   {
     "nominee": "Stay With Me (Darkchild Version)",
-    "features": null,
-    "error": "429 Too Many Requests"
-  },
-  {
-    "nominee": "Stay With Me (Darkchild Version)",
-    "features": null,
-    "error": "429 Too Many Requests"
+    "features": {
+      "acousticness": 0.7715,
+      "danceability": 0.6572,
+      "energy": 0.214,
+      "instrumentalness": 0.1418,
+      "liveness": 0.1184,
+      "loudness": -14.8899,
+      "speechiness": 0.0938,
+      "tempo": 73.1891,
+      "valence": 0.2445
+    },
+    "error": null
   },
   {
     "nominee": "Get Lucky",
-    "features": null,
-    "error": "429 Too Many Requests"
+    "features": {
+      "acousticness": 0.0742,
+      "danceability": 0.7651,
+      "energy": 0.5969,
+      "instrumentalness": 0.7412,
+      "liveness": 0.1239,
+      "loudness": -11.8159,
+      "speechiness": 0.0627,
+      "tempo": 96.2373,
+      "valence": 0.4983
+    },
+    "error": null
   },
   {
     "nominee": "Royals",
@@ -221,36 +191,6 @@
       "speechiness": 0.0752,
       "tempo": 111.9134,
       "valence": 0.6375
-    },
-    "error": null
-  },
-  {
-    "nominee": "Rolling In The Deep",
-    "features": {
-      "acousticness": 0.5311,
-      "danceability": 0.6745,
-      "energy": 0.1801,
-      "instrumentalness": 0.0073,
-      "liveness": 0.1093,
-      "loudness": -18.6429,
-      "speechiness": 0.0752,
-      "tempo": 111.9134,
-      "valence": 0.6375
-    },
-    "error": null
-  },
-  {
-    "nominee": "Need You Now",
-    "features": {
-      "acousticness": 0.5975,
-      "danceability": 0.4404,
-      "energy": 0.2154,
-      "instrumentalness": 0.867,
-      "liveness": 0.1125,
-      "loudness": -17.891,
-      "speechiness": 0.0389,
-      "tempo": 100.72,
-      "valence": 0.1474
     },
     "error": null
   },
@@ -316,13 +256,18 @@
   },
   {
     "nominee": "Viva La Vida",
-    "features": null,
-    "error": "429 Too Many Requests"
-  },
-  {
-    "nominee": "Rehab",
-    "features": null,
-    "error": "429 Too Many Requests"
+    "features": {
+      "acousticness": 0.7059,
+      "danceability": 0.7034,
+      "energy": 0.2948,
+      "instrumentalness": 0.061,
+      "liveness": 0.1159,
+      "loudness": -14.5929,
+      "speechiness": 0.051,
+      "tempo": 117.4049,
+      "valence": 0.6231
+    },
+    "error": null
   },
   {
     "nominee": "Rehab",
@@ -331,53 +276,123 @@
   },
   {
     "nominee": "Not Ready To Make Nice",
-    "features": null,
-    "error": "429 Too Many Requests"
-  },
-  {
-    "nominee": "Not Ready To Make Nice",
-    "features": null,
-    "error": "429 Too Many Requests"
+    "features": {
+      "acousticness": 0.8248,
+      "danceability": 0.5729,
+      "energy": 0.1163,
+      "instrumentalness": 0.0168,
+      "liveness": 0.1041,
+      "loudness": -13.9919,
+      "speechiness": 0.0435,
+      "tempo": 113.1628,
+      "valence": 0.2086
+    },
+    "error": null
   },
   {
     "nominee": "Boulevard Of Broken Dreams",
-    "features": null,
-    "error": "429 Too Many Requests"
+    "features": {
+      "acousticness": 0.1047,
+      "danceability": 0.2894,
+      "energy": 0.5771,
+      "instrumentalness": 0.833,
+      "liveness": 0.2077,
+      "loudness": -14.7226,
+      "speechiness": 0.0811,
+      "tempo": 102.3353,
+      "valence": 0.0953
+    },
+    "error": null
   },
   {
     "nominee": "Sometimes You Can't Make It On Your Own",
-    "features": null,
-    "error": "429 Too Many Requests"
+    "features": {
+      "acousticness": 0.6509,
+      "danceability": 0.5019,
+      "energy": 0.1626,
+      "instrumentalness": 0.2018,
+      "liveness": 0.1312,
+      "loudness": -20.7336,
+      "speechiness": 0.0534,
+      "tempo": 102.1549,
+      "valence": 0.2755
+    },
+    "error": null
   },
   {
     "nominee": "Here We Go Again",
-    "features": null,
-    "error": "429 Too Many Requests"
+    "features": {
+      "acousticness": 0.4346,
+      "danceability": 0.4605,
+      "energy": 0.3798,
+      "instrumentalness": 0.0211,
+      "liveness": 0.1107,
+      "loudness": -12.0926,
+      "speechiness": 0.0439,
+      "tempo": 98.7075,
+      "valence": 0.1453
+    },
+    "error": null
   },
   {
     "nominee": "Daughters",
-    "features": null,
-    "error": "429 Too Many Requests"
+    "features": {
+      "acousticness": 0.8409,
+      "danceability": 0.5785,
+      "energy": 0.2219,
+      "instrumentalness": 0.0724,
+      "liveness": 0.1152,
+      "loudness": -13.1449,
+      "speechiness": 0.0484,
+      "tempo": 112.8119,
+      "valence": 0.2762
+    },
+    "error": null
   },
   {
     "nominee": "Clocks",
-    "features": null,
-    "error": "429 Too Many Requests"
+    "features": {
+      "acousticness": 0.8194,
+      "danceability": 0.3874,
+      "energy": 0.2578,
+      "instrumentalness": 0.8718,
+      "liveness": 0.1116,
+      "loudness": -17.0777,
+      "speechiness": 0.0422,
+      "tempo": 128.4997,
+      "valence": 0.0916
+    },
+    "error": null
   },
   {
     "nominee": "Dance With My Father",
-    "features": null,
-    "error": "429 Too Many Requests"
+    "features": {
+      "acousticness": 0.5762,
+      "danceability": 0.73,
+      "energy": 0.1957,
+      "instrumentalness": 0.0212,
+      "liveness": 0.0911,
+      "loudness": -11.0008,
+      "speechiness": 0.0591,
+      "tempo": 159.8984,
+      "valence": 0.3482
+    },
+    "error": null
   },
   {
     "nominee": "Don't Know Why",
-    "features": null,
-    "error": "429 Too Many Requests"
-  },
-  {
-    "nominee": "Don't Know Why",
-    "features": null,
-    "error": "429 Too Many Requests"
+    "features": {
+      "acousticness": 0.9082,
+      "danceability": 0.6764,
+      "energy": 0.1592,
+      "instrumentalness": 0.0004,
+      "liveness": 0.122,
+      "loudness": -16.577,
+      "speechiness": 0.0512,
+      "tempo": 88.4454,
+      "valence": 0.4713
+    },
+    "error": null
   },
   {
     "nominee": "Walk On",
@@ -425,21 +440,6 @@
     "error": null
   },
   {
-    "nominee": "Beautiful Day",
-    "features": {
-      "acousticness": 0.29,
-      "danceability": 0.6593,
-      "energy": 0.6004,
-      "instrumentalness": 0.1115,
-      "liveness": 0.1417,
-      "loudness": -11.8891,
-      "speechiness": 0.0731,
-      "tempo": 114.5065,
-      "valence": 0.6497
-    },
-    "error": null
-  },
-  {
     "nominee": "Smooth",
     "features": {
       "acousticness": 0.3545,
@@ -451,36 +451,6 @@
       "speechiness": 0.0679,
       "tempo": 105.7718,
       "valence": 0.475
-    },
-    "error": null
-  },
-  {
-    "nominee": "Smooth",
-    "features": {
-      "acousticness": 0.3545,
-      "danceability": 0.5155,
-      "energy": 0.5243,
-      "instrumentalness": 0.488,
-      "liveness": 0.1887,
-      "loudness": -15.9875,
-      "speechiness": 0.0679,
-      "tempo": 105.7718,
-      "valence": 0.475
-    },
-    "error": null
-  },
-  {
-    "nominee": "My Heart Will Go On (Love Theme From Titanic)",
-    "features": {
-      "acousticness": 0.8953,
-      "danceability": 0.2664,
-      "energy": 0.0941,
-      "instrumentalness": 0.0489,
-      "liveness": 0.1162,
-      "loudness": -21.5295,
-      "speechiness": 0.0392,
-      "tempo": 94.17,
-      "valence": 0.1991
     },
     "error": null
   },
@@ -515,84 +485,139 @@
     "error": null
   },
   {
-    "nominee": "Sunny Came Home",
+    "nominee": "Change The World",
     "features": {
-      "acousticness": 0.4098,
-      "danceability": 0.6066,
-      "energy": 0.4097,
-      "instrumentalness": 0.8607,
-      "liveness": 0.115,
-      "loudness": -12.9391,
-      "speechiness": 0.0472,
-      "tempo": 152.0983,
-      "valence": 0.3618
+      "acousticness": 0.4748,
+      "danceability": 0.6185,
+      "energy": 0.2325,
+      "instrumentalness": 0.3054,
+      "liveness": 0.1134,
+      "loudness": -15.394,
+      "speechiness": 0.0507,
+      "tempo": 135.7831,
+      "valence": 0.4441
     },
     "error": null
   },
   {
-    "nominee": "Change The World",
-    "features": null,
-    "error": "429 Too Many Requests"
-  },
-  {
-    "nominee": "Change The World",
-    "features": null,
-    "error": "429 Too Many Requests"
-  },
-  {
     "nominee": "Kiss From A Rose",
-    "features": null,
-    "error": "429 Too Many Requests"
-  },
-  {
-    "nominee": "Kiss From A Rose",
-    "features": null,
-    "error": "429 Too Many Requests"
+    "features": {
+      "acousticness": 0.7715,
+      "danceability": 0.4789,
+      "energy": 0.1768,
+      "instrumentalness": 0.0329,
+      "liveness": 0.1267,
+      "loudness": -17.2651,
+      "speechiness": 0.0426,
+      "tempo": 110.7994,
+      "valence": 0.3157
+    },
+    "error": null
   },
   {
     "nominee": "All I Wanna Do",
-    "features": null,
-    "error": "429 Too Many Requests"
+    "features": {
+      "acousticness": 0.4004,
+      "danceability": 0.7642,
+      "energy": 0.5909,
+      "instrumentalness": 0.0428,
+      "liveness": 0.1157,
+      "loudness": -6.9797,
+      "speechiness": 0.0548,
+      "tempo": 105.9007,
+      "valence": 0.5784
+    },
+    "error": null
   },
   {
     "nominee": "Streets Of Philadelphia",
-    "features": null,
-    "error": "429 Too Many Requests"
+    "features": {
+      "acousticness": 0.2971,
+      "danceability": 0.7061,
+      "energy": 0.4139,
+      "instrumentalness": 0.8519,
+      "liveness": 0.1205,
+      "loudness": -14.6638,
+      "speechiness": 0.0528,
+      "tempo": 94.6221,
+      "valence": 0.2627
+    },
+    "error": null
   },
   {
     "nominee": "I Will Always Love You",
-    "features": null,
-    "error": "429 Too Many Requests"
+    "features": {
+      "acousticness": 0.9017,
+      "danceability": 0.388,
+      "energy": 0.0363,
+      "instrumentalness": 0.014,
+      "liveness": 0.1436,
+      "loudness": -18.7667,
+      "speechiness": 0.0995,
+      "tempo": 85.3766,
+      "valence": 0.1923
+    },
+    "error": null
   },
   {
     "nominee": "A Whole New World (Aladdin's Theme)",
-    "features": null,
-    "error": "429 Too Many Requests"
+    "features": {
+      "acousticness": 0.8272,
+      "danceability": 0.4586,
+      "energy": 0.0495,
+      "instrumentalness": 0.0175,
+      "liveness": 0.1012,
+      "loudness": -19.8474,
+      "speechiness": 0.0383,
+      "tempo": 88.0301,
+      "valence": 0.1787
+    },
+    "error": null
   },
   {
     "nominee": "Tears In Heaven",
-    "features": null,
-    "error": "429 Too Many Requests"
-  },
-  {
-    "nominee": "Tears In Heaven",
-    "features": null,
-    "error": "429 Too Many Requests"
+    "features": {
+      "acousticness": 0.9166,
+      "danceability": 0.5803,
+      "energy": 0.1355,
+      "instrumentalness": 0.7439,
+      "liveness": 0.112,
+      "loudness": -17.952,
+      "speechiness": 0.0487,
+      "tempo": 98.415,
+      "valence": 0.3886
+    },
+    "error": null
   },
   {
     "nominee": "Unforgettable",
-    "features": null,
-    "error": "429 Too Many Requests"
-  },
-  {
-    "nominee": "Unforgettable",
-    "features": null,
-    "error": "429 Too Many Requests"
+    "features": {
+      "acousticness": 0.5488,
+      "danceability": 0.2468,
+      "energy": 0.1687,
+      "instrumentalness": 0.8707,
+      "liveness": 0.1194,
+      "loudness": -22.8928,
+      "speechiness": 0.0492,
+      "tempo": 103.9117,
+      "valence": 0.0486
+    },
+    "error": null
   },
   {
     "nominee": "Another Day In Paradise",
-    "features": null,
-    "error": "429 Too Many Requests"
+    "features": {
+      "acousticness": 0.8566,
+      "danceability": 0.4468,
+      "energy": 0.1253,
+      "instrumentalness": 0.8988,
+      "liveness": 0.1035,
+      "loudness": -21.1475,
+      "speechiness": 0.0426,
+      "tempo": 105.1674,
+      "valence": 0.2428
+    },
+    "error": null
   },
   {
     "nominee": "From A Distance",
@@ -621,36 +646,6 @@
       "speechiness": 0.036,
       "tempo": 104.5653,
       "valence": 0.1087
-    },
-    "error": null
-  },
-  {
-    "nominee": "Wind Beneath My Wings",
-    "features": {
-      "acousticness": 0.8555,
-      "danceability": 0.3598,
-      "energy": 0.0704,
-      "instrumentalness": 0.0195,
-      "liveness": 0.1111,
-      "loudness": -20.7572,
-      "speechiness": 0.036,
-      "tempo": 104.5653,
-      "valence": 0.1087
-    },
-    "error": null
-  },
-  {
-    "nominee": "Don't Worry Be Happy",
-    "features": {
-      "acousticness": 0.7052,
-      "danceability": 0.6674,
-      "energy": 0.2914,
-      "instrumentalness": 0.4466,
-      "liveness": 0.1136,
-      "loudness": -13.3675,
-      "speechiness": 0.0698,
-      "tempo": 114.189,
-      "valence": 0.4352
     },
     "error": null
   },
@@ -745,64 +740,109 @@
     "error": null
   },
   {
-    "nominee": "We Are The World",
-    "features": null,
-    "error": "429 Too Many Requests"
-  },
-  {
     "nominee": "What's Love Got To Do With It",
-    "features": null,
-    "error": "429 Too Many Requests"
-  },
-  {
-    "nominee": "What's Love Got To Do With It",
-    "features": null,
-    "error": "429 Too Many Requests"
+    "features": {
+      "acousticness": 0.2219,
+      "danceability": 0.7973,
+      "energy": 0.4123,
+      "instrumentalness": 0.0224,
+      "liveness": 0.1094,
+      "loudness": -11.524,
+      "speechiness": 0.0986,
+      "tempo": 103.2091,
+      "valence": 0.6673
+    },
+    "error": null
   },
   {
     "nominee": "Beat It",
-    "features": null,
-    "error": "429 Too Many Requests"
+    "features": {
+      "acousticness": 0.3607,
+      "danceability": 0.3343,
+      "energy": 0.3544,
+      "instrumentalness": 0.8414,
+      "liveness": 0.2342,
+      "loudness": -21.6159,
+      "speechiness": 0.108,
+      "tempo": 80.1986,
+      "valence": 0.0482
+    },
+    "error": null
   },
   {
     "nominee": "Every Breath You Take",
-    "features": null,
-    "error": "429 Too Many Requests"
+    "features": {
+      "acousticness": 0.7926,
+      "danceability": 0.8643,
+      "energy": 0.4781,
+      "instrumentalness": 0.5845,
+      "liveness": 0.0979,
+      "loudness": -10.1687,
+      "speechiness": 0.0791,
+      "tempo": 106.832,
+      "valence": 0.6652
+    },
+    "error": null
   },
   {
     "nominee": "Rosanna",
-    "features": null,
-    "error": "429 Too Many Requests"
+    "features": {
+      "acousticness": 0.1373,
+      "danceability": 0.6457,
+      "energy": 0.4099,
+      "instrumentalness": 0.0497,
+      "liveness": 0.1349,
+      "loudness": -13.9192,
+      "speechiness": 0.045,
+      "tempo": 97.7155,
+      "valence": 0.4872
+    },
+    "error": null
   },
   {
     "nominee": "Always On My Mind",
-    "features": null,
-    "error": "429 Too Many Requests"
+    "features": {
+      "acousticness": 0.4231,
+      "danceability": 0.3705,
+      "energy": 0.443,
+      "instrumentalness": 0.0325,
+      "liveness": 0.2226,
+      "loudness": -17.6738,
+      "speechiness": 0.1611,
+      "tempo": 94.5196,
+      "valence": 0.1932
+    },
+    "error": null
   },
   {
     "nominee": "Bette Davis Eyes",
-    "features": null,
-    "error": "429 Too Many Requests"
-  },
-  {
-    "nominee": "Bette Davis Eyes",
-    "features": null,
-    "error": "429 Too Many Requests"
+    "features": {
+      "acousticness": 0.175,
+      "danceability": 0.6949,
+      "energy": 0.4527,
+      "instrumentalness": 0.0727,
+      "liveness": 0.1357,
+      "loudness": -10.3213,
+      "speechiness": 0.0465,
+      "tempo": 106.7843,
+      "valence": 0.4156
+    },
+    "error": null
   },
   {
     "nominee": "Sailing",
-    "features": null,
-    "error": "429 Too Many Requests"
-  },
-  {
-    "nominee": "Sailing",
-    "features": null,
-    "error": "429 Too Many Requests"
-  },
-  {
-    "nominee": "What A Fool Believes",
-    "features": null,
-    "error": "429 Too Many Requests"
+    "features": {
+      "acousticness": 0.7643,
+      "danceability": 0.3267,
+      "energy": 0.0719,
+      "instrumentalness": 0.8066,
+      "liveness": 0.1085,
+      "loudness": -25.5029,
+      "speechiness": 0.0411,
+      "tempo": 110.3665,
+      "valence": 0.1192
+    },
+    "error": null
   },
   {
     "nominee": "What A Fool Believes",
@@ -816,21 +856,6 @@
       "speechiness": 0.0587,
       "tempo": 104.5947,
       "valence": 0.8951
-    },
-    "error": null
-  },
-  {
-    "nominee": "Just The Way You Are",
-    "features": {
-      "acousticness": 0.6148,
-      "danceability": 0.4459,
-      "energy": 0.4071,
-      "instrumentalness": 0.6246,
-      "liveness": 0.22,
-      "loudness": -20.5373,
-      "speechiness": 0.2072,
-      "tempo": 97.5917,
-      "valence": 0.106
     },
     "error": null
   },
@@ -956,58 +981,123 @@
   },
   {
     "nominee": "The Way We Were",
-    "features": null,
-    "error": "429 Too Many Requests"
+    "features": {
+      "acousticness": 0.9885,
+      "danceability": 0.3638,
+      "energy": 0.0,
+      "instrumentalness": 0.9279,
+      "liveness": 0.1053,
+      "loudness": -25.9984,
+      "speechiness": 0.0451,
+      "tempo": 103.7458,
+      "valence": 0.1949
+    },
+    "error": null
   },
   {
     "nominee": "Killing Me Softly With His Song",
-    "features": null,
-    "error": "429 Too Many Requests"
-  },
-  {
-    "nominee": "Killing Me Softly With His Song",
-    "features": null,
-    "error": "429 Too Many Requests"
+    "features": {
+      "acousticness": 0.941,
+      "danceability": 0.3891,
+      "energy": 0.0639,
+      "instrumentalness": 0.0104,
+      "liveness": 0.1181,
+      "loudness": -16.9036,
+      "speechiness": 0.0353,
+      "tempo": 96.493,
+      "valence": 0.1668
+    },
+    "error": null
   },
   {
     "nominee": "The First Time Ever I Saw Your Face",
-    "features": null,
-    "error": "429 Too Many Requests"
-  },
-  {
-    "nominee": "The First Time Ever I Saw Your Face",
-    "features": null,
-    "error": "429 Too Many Requests"
+    "features": {
+      "acousticness": 0.9507,
+      "danceability": 0.3681,
+      "energy": 0.1513,
+      "instrumentalness": 0.0073,
+      "liveness": 0.1197,
+      "loudness": -15.0198,
+      "speechiness": 0.0293,
+      "tempo": 127.5984,
+      "valence": 0.1358
+    },
+    "error": null
   },
   {
     "nominee": "It's Too Late",
-    "features": null,
-    "error": "429 Too Many Requests"
+    "features": {
+      "acousticness": 0.9107,
+      "danceability": 0.5524,
+      "energy": 0.1142,
+      "instrumentalness": 0.0336,
+      "liveness": 0.1081,
+      "loudness": -18.0248,
+      "speechiness": 0.0455,
+      "tempo": 106.4349,
+      "valence": 0.3969
+    },
+    "error": null
   },
   {
     "nominee": "You've Got A Friend",
-    "features": null,
-    "error": "429 Too Many Requests"
+    "features": {
+      "acousticness": 0.9057,
+      "danceability": 0.5151,
+      "energy": 0.0642,
+      "instrumentalness": 0.0485,
+      "liveness": 0.1098,
+      "loudness": -18.8621,
+      "speechiness": 0.0549,
+      "tempo": 95.9818,
+      "valence": 0.2314
+    },
+    "error": null
   },
   {
     "nominee": "Bridge Over Troubled Water",
-    "features": null,
-    "error": "429 Too Many Requests"
-  },
-  {
-    "nominee": "Bridge Over Troubled Water",
-    "features": null,
-    "error": "429 Too Many Requests"
+    "features": {
+      "acousticness": 0.9468,
+      "danceability": 0.3786,
+      "energy": 0.0,
+      "instrumentalness": 0.9405,
+      "liveness": 0.1082,
+      "loudness": -29.2579,
+      "speechiness": 0.0526,
+      "tempo": 96.4982,
+      "valence": 0.0972
+    },
+    "error": null
   },
   {
     "nominee": "Aquarius/Let The Sunshine In (The Flesh Failures)",
-    "features": null,
-    "error": "429 Too Many Requests"
+    "features": {
+      "acousticness": 0.3838,
+      "danceability": 0.3618,
+      "energy": 0.3481,
+      "instrumentalness": 0.0462,
+      "liveness": 0.1477,
+      "loudness": -13.5406,
+      "speechiness": 0.0348,
+      "tempo": 84.3563,
+      "valence": 0.3384
+    },
+    "error": null
   },
   {
     "nominee": "Games People Play",
-    "features": null,
-    "error": "429 Too Many Requests"
+    "features": {
+      "acousticness": 0.5735,
+      "danceability": 0.737,
+      "energy": 0.4077,
+      "instrumentalness": 0.0,
+      "liveness": 0.1377,
+      "loudness": -14.0663,
+      "speechiness": 0.0839,
+      "tempo": 116.1759,
+      "valence": 0.792
+    },
+    "error": null
   },
   {
     "nominee": "Mrs. Robinson",
@@ -1036,21 +1126,6 @@
       "speechiness": 0.2031,
       "tempo": 79.2224,
       "valence": 0.3405
-    },
-    "error": null
-  },
-  {
-    "nominee": "Up, Up And Away",
-    "features": {
-      "acousticness": 0.8358,
-      "danceability": 0.6615,
-      "energy": 0.4972,
-      "instrumentalness": 0.0114,
-      "liveness": 0.1445,
-      "loudness": -10.8521,
-      "speechiness": 0.0511,
-      "tempo": 120.036,
-      "valence": 0.7442
     },
     "error": null
   },
@@ -1161,43 +1236,93 @@
   },
   {
     "nominee": "Days Of Wine And Roses",
-    "features": null,
-    "error": "429 Too Many Requests"
-  },
-  {
-    "nominee": "Days Of Wine And Roses",
-    "features": null,
-    "error": "429 Too Many Requests"
+    "features": {
+      "acousticness": 0.7853,
+      "danceability": 0.6182,
+      "energy": 0.2269,
+      "instrumentalness": 0.008,
+      "liveness": 0.1332,
+      "loudness": -12.8414,
+      "speechiness": 0.0539,
+      "tempo": 107.4637,
+      "valence": 0.4083
+    },
+    "error": null
   },
   {
     "nominee": "I Left My Heart In San Francisco",
-    "features": null,
-    "error": "429 Too Many Requests"
+    "features": {
+      "acousticness": 0.6607,
+      "danceability": 0.4619,
+      "energy": 0.4318,
+      "instrumentalness": 0.0628,
+      "liveness": 0.3459,
+      "loudness": -18.1813,
+      "speechiness": 0.127,
+      "tempo": 106.9207,
+      "valence": 0.1347
+    },
+    "error": null
   },
   {
     "nominee": "What Kind Of Fool Am I",
-    "features": null,
-    "error": "429 Too Many Requests"
+    "features": {
+      "acousticness": 0.8984,
+      "danceability": 0.3849,
+      "energy": 0.327,
+      "instrumentalness": 0.0111,
+      "liveness": 0.2167,
+      "loudness": -15.1541,
+      "speechiness": 0.0782,
+      "tempo": 93.5422,
+      "valence": 0.2097
+    },
+    "error": null
   },
   {
     "nominee": "Moon River",
-    "features": null,
-    "error": "429 Too Many Requests"
-  },
-  {
-    "nominee": "Moon River",
-    "features": null,
-    "error": "429 Too Many Requests"
+    "features": {
+      "acousticness": 0.9034,
+      "danceability": 0.4827,
+      "energy": 0.1302,
+      "instrumentalness": 0.0126,
+      "liveness": 0.1117,
+      "loudness": -14.6796,
+      "speechiness": 0.044,
+      "tempo": 92.5893,
+      "valence": 0.1829
+    },
+    "error": null
   },
   {
     "nominee": "The Theme From A Summer Place",
-    "features": null,
-    "error": "429 Too Many Requests"
+    "features": {
+      "acousticness": 0.6649,
+      "danceability": 0.3649,
+      "energy": 0.157,
+      "instrumentalness": 0.5767,
+      "liveness": 0.1393,
+      "loudness": -21.2614,
+      "speechiness": 0.0418,
+      "tempo": 103.7635,
+      "valence": 0.4186
+    },
+    "error": null
   },
   {
     "nominee": "Theme From Exodus",
-    "features": null,
-    "error": "429 Too Many Requests"
+    "features": {
+      "acousticness": 0.7516,
+      "danceability": 0.0783,
+      "energy": 0.3331,
+      "instrumentalness": 0.8491,
+      "liveness": 0.1488,
+      "loudness": -13.2613,
+      "speechiness": 0.0157,
+      "tempo": 54.9932,
+      "valence": 0.1522
+    },
+    "error": null
   },
   {
     "nominee": "Mack The Knife",
@@ -1206,17 +1331,32 @@
   },
   {
     "nominee": "The Battle Of New Orleans",
-    "features": null,
-    "error": "429 Too Many Requests"
+    "features": {
+      "acousticness": 0.7679,
+      "danceability": 0.6719,
+      "energy": 0.5676,
+      "instrumentalness": 0.0,
+      "liveness": 0.1353,
+      "loudness": -8.278,
+      "speechiness": 0.0765,
+      "tempo": 117.0383,
+      "valence": 0.9243
+    },
+    "error": null
   },
   {
     "nominee": "Nel Blu Dipinto Di Blu (Volare)",
-    "features": null,
-    "error": "429 Too Many Requests"
-  },
-  {
-    "nominee": "Nel Blu Dipinto Di Blu (Volare)",
-    "features": null,
-    "error": "429 Too Many Requests"
+    "features": {
+      "acousticness": 0.9367,
+      "danceability": 0.419,
+      "energy": 0.1475,
+      "instrumentalness": 0.0148,
+      "liveness": 0.1601,
+      "loudness": -19.794,
+      "speechiness": 0.0904,
+      "tempo": 89.0253,
+      "valence": 0.1818
+    },
+    "error": null
   }
 ]

@@ -8,6 +8,7 @@ import requests
 import shutil
 from tqdm import tqdm
 from pathlib import Path
+import time
 
 from src.params import Params
 from src.client import DatabaseClient
@@ -146,6 +147,7 @@ def process_audio_dataset() -> pd.DataFrame:
     input_path = params.intermediate_data / "grammys.csv"
     df = pd.read_csv(input_path)
     filtered_df = df[df['normalized_category'].isin(['Song Of The Year', 'Record Of The Year'])]
+    filtered_df = filtered_df.drop_duplicates(subset="nominee", keep="first")
     results = []
 
     for _, row in tqdm(filtered_df.iterrows(), total=len(filtered_df), desc="Analyzing with ReccoBeats"):
@@ -165,6 +167,7 @@ def process_audio_dataset() -> pd.DataFrame:
             features, error = None, "Trimmed audio not found"
 
         results.append({"nominee": nominee, "features": features, "error": error})
+        time.sleep(3)
 
     with open(RECCOBEATS_JSON_PATH, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2, ensure_ascii=False)

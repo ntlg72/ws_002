@@ -5,5 +5,5 @@ setup(
     packages=find_packages(),
     version='0.1.0',
     description='ETl process using Airflow',
-    author='Natalia LLopez Gallego',
+    author='Natalia Lopez Gallego',
 )

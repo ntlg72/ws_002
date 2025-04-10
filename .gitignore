@@ -13,10 +13,3 @@ venv/
 
 ## Macbook stuff
 .DS_Store
-
-# Ignorar all in /data/intermediate/audio_files
-/data/audio_files/*
-
-# Do not ignore /data/intermediate/audio_files/trimmed content
-!/data/audio_files/trimmed/
-!/data/audio_files/trimmed/**
