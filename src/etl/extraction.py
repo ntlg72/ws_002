@@ -5,9 +5,9 @@ import logging
 import subprocess
 import pandas as pd
 import requests
-import tempfile
 import shutil
 from tqdm import tqdm
+from pathlib import Path
 
 from src.params import Params
 from src.client import DatabaseClient
@@ -18,17 +18,17 @@ setup_logging()
 params = Params()
 db_client = DatabaseClient(params)
 
-# Temporary directory setup
-TEMP_DIR = os.path.join(tempfile.gettempdir(), "reccobeats_tmp")
-os.makedirs(TEMP_DIR, exist_ok=True)
+# Temporary directory for processing
+TEMP_DIR = params.intermediate_data / "temp"
+TEMP_DIR.mkdir(parents=True, exist_ok=True)
 
 # Fixed directory where audio files already exist
-AUDIO_DIR = os.path.join(params.DATA_DIR, "audio_files")
+AUDIO_DIR = params.AUDIO_DIR
 
 # Temporary subdirectories and file paths
-TRIMMED_DIR = os.path.join(TEMP_DIR, "trimmed")
-RECCOBEATS_JSON_PATH = os.path.join(TEMP_DIR, "reccobeats_features.json")
-RECCOBEATS_CSV_PATH = os.path.join(TEMP_DIR, "reccobeats_features.csv")
+TRIMMED_DIR = TEMP_DIR / "trimmed"
+RECCOBEATS_JSON_PATH = TEMP_DIR / "reccobeats_features.json"
+RECCOBEATS_CSV_PATH = TEMP_DIR / "reccobeats_features.csv"
 
 def load_local_csv(csv_path: str) -> pd.DataFrame:
     """
@@ -80,29 +80,29 @@ def safe_filename(title: str) -> str:
     """
     return re.sub(r'[^\w\-_\(\)\s]', '', title).replace(" ", "_")
 
-def trim_audio(audio_path: str, output_dir: str = TRIMMED_DIR) -> str | None:
+def trim_audio(audio_path: str, output_dir: Path = TRIMMED_DIR) -> str | None:
     """
     Trims the first 30 seconds of a given audio file using ffmpeg.
 
     Args:
         audio_path (str): Path to the original audio file.
-        output_dir (str): Directory where the trimmed audio will be saved.
+        output_dir (Path): Directory where the trimmed audio will be saved.
 
     Returns:
         str | None: Path to the trimmed audio file, or None if trimming failed.
     """
-    os.makedirs(output_dir, exist_ok=True)
+    output_dir.mkdir(parents=True, exist_ok=True)
     base_name = os.path.basename(audio_path)
-    trimmed_path = os.path.join(output_dir, f"{os.path.splitext(base_name)[0]}_trimmed.mp3")
+    trimmed_path = output_dir / f"{os.path.splitext(base_name)[0]}_trimmed.mp3"
 
     try:
         subprocess.run([
-            "ffmpeg", "-y", "-i", audio_path,
-            "-t", "30", "-acodec", "copy", trimmed_path
+            "ffmpeg", "-y", "-i", str(audio_path),
+            "-t", "30", "-acodec", "copy", str(trimmed_path)
         ], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
-        if os.path.exists(trimmed_path) and os.path.getsize(trimmed_path) > 0:
-            return trimmed_path
+        if trimmed_path.exists() and trimmed_path.stat().st_size > 0:
+            return str(trimmed_path)
     except Exception as e:
         logging.error(f"Error trimming {audio_path}: {e}")
 
@@ -143,7 +143,7 @@ def process_audio_dataset() -> pd.DataFrame:
     Returns:
         pd.DataFrame: DataFrame containing nominees and their extracted audio features.
     """
-    input_path = os.path.join(params.intermediate_data, "grammys.csv")
+    input_path = params.intermediate_data / "grammys.csv"
     df = pd.read_csv(input_path)
     filtered_df = df[df['normalized_category'].isin(['Song Of The Year', 'Record Of The Year'])]
     results = []
@@ -151,13 +151,13 @@ def process_audio_dataset() -> pd.DataFrame:
     for _, row in tqdm(filtered_df.iterrows(), total=len(filtered_df), desc="Analyzing with ReccoBeats"):
         nominee = row["nominee"]
         filename = safe_filename(nominee) + ".mp3"
-        audio_path = os.path.join(AUDIO_DIR, filename)
+        audio_path = AUDIO_DIR / filename
 
-        if not os.path.exists(audio_path):
+        if not audio_path.exists():
             logging.warning(f"Audio file not found for {nominee}: {audio_path}")
             continue
 
-        trimmed = trim_audio(audio_path)
+        trimmed = trim_audio(str(audio_path))
         if trimmed:
             features, error = analyze_with_reccobeats(trimmed)
             os.remove(trimmed)

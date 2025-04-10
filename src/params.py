@@ -1,5 +1,6 @@
-from dotenv import load_dotenv
-import os 
+from dotenv import load_dotenv 
+import os
+import tempfile
 from pathlib import Path
 
 class Params:
@@ -20,40 +21,43 @@ class Params:
 
     ```
     def func(params):
-    		...
-
-    		url = params.url
-
-    	...
+        ...
+        url = params.url
+        ...
     ```
     """
 
-    # pre-requeqs
-
-    # magically load environment variables from any .env files
+    # Load environment variables
     BASE_DIR = Path(__file__).resolve().parent.parent
     load_dotenv(BASE_DIR / '.env')
 
-    # parameters
-    raw_data = os.path.abspath('../data/raw/')
-    external_data = os.path.abspath('../data/external/')
-    processed_data = os.path.abspath('../data/processed/')
-    intermediate_data = os.path.abspath('../data/intermediate/')
+    # Use system temp directory for data paths
+    TMP_BASE_DIR = Path(tempfile.gettempdir()) / "reccobeats_tmp"
+    TMP_BASE_DIR.mkdir(exist_ok=True)
 
-    log_name = os.path.abspath('../log/dump.log')
+    raw_data = TMP_BASE_DIR / 'raw'
+    external_data = TMP_BASE_DIR / 'external'
+    processed_data = TMP_BASE_DIR / 'processed'
+    intermediate_data = TMP_BASE_DIR / 'intermediate'
 
-    # if this is set to True, then all the nodes will be automatically 
-    # considered not up-to-date and will be rerun.
+    for d in [raw_data, external_data, processed_data, intermediate_data]:
+        d.mkdir(parents=True, exist_ok=True)
+
+    log_name = TMP_BASE_DIR / 'log' / 'dump.log'
+    log_name.parent.mkdir(parents=True, exist_ok=True)
+
+    # ReccoBeats input audio directory (not temporary)
+    DATA_DIR = BASE_DIR / 'data'
+    AUDIO_DIR = DATA_DIR / 'audio_files'
+
+    SPOTIFY_DATASET_PATH = external_data / 'spotify_dataset.csv'
+
+    # Force execution
     force_execution = True 
 
-    ## Database connection params
+    # DB parameters
     user = os.getenv('DB_USERNAME')
     password = os.getenv('DB_PASSWORD')
     host = os.getenv('DB_HOST')
     database = os.getenv('DB_DATABASE')
     port = os.getenv('DB_PORT')
-
-	
-    BASE_DIR = Path(__file__).resolve().parent.parent
-    DATA_DIR = BASE_DIR / 'data'
-    SPOTIFY_DATASET_PATH = DATA_DIR / 'external' / 'spotify_dataset.csv'
