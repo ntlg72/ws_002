@@ -1,77 +1,50 @@
+# dags/etl_full_extraction_dag.py
+
 from datetime import datetime, timedelta
-from airflow.decorators import dag, task
+from airflow import DAG
+from airflow.operators.python import PythonOperator
+import sys, os
 
-# Importing the necessary modules and env variables
-# --------------------------------
+# Agregar src al path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from tasks.etl import *
+# Importar funciones de extracción
+from src.etl.extraction import load_local_csv, read_table_from_db, process_audio_dataset
 
 default_args = {
-    'owner': "airflow",
+    'owner': 'airflow',
     'depends_on_past': False,
-    'start_date': datetime(2024, 8, 14),
-    'email': "example@example.com",
+    'start_date': datetime(2023, 9, 13),
     'email_on_failure': False,
     'email_on_retry': False,
     'retries': 1,
-    'retry_delay': timedelta(minutes=1)
+    'retry_delay': timedelta(minutes=1),
 }
 
-@dag(
+with DAG(
+    dag_id='etl_full_extraction_dag',
     default_args=default_args,
-    description='Creating an ETL pipeline for our GTA database.',
-    schedule=timedelta(days=1),
-    max_active_runs=1,
+    description='Full ETL extraction DAG: CSV, DB, and Audio API',
+    schedule_interval='@daily',
     catchup=False,
-    concurrency=4,
-)
+) as dag:
 
-def workshop2_dag():
-    """
-    This DAG is going to execute the ETL pipeline for the Global Terrorism Analysis project.
-    
-    """
-    
-    @task 
-    def spotify_extraction():
-        return extract_spotify()
-    
-    spotify_raw_data = spotify_extraction()
-        
-    @task
-    def grammys_extraction():
-        return extract_grammys()
-    
-    grammys_raw_data = grammys_extraction()
-    
-    @task
-    def spotify_transformation(raw_df):
-        return transform_spotify(raw_df)
-    
-    spotify_data = spotify_transformation(spotify_raw_data)
-    
-    @task
-    def grammys_transformation(raw_df):
-        return transform_grammys(raw_df)
-    
-    grammys_data = grammys_transformation(grammys_raw_data)
-    
-    @task
-    def data_merging(spotify_df, grammys_df):
-        return merge_data(spotify_df, grammys_df)
-    
-    df = data_merging(spotify_data, grammys_data)
-    
-    @task
-    def data_loading(df):
-        return load_data(df)
-    
-    data_load = data_loading(df)
-    
-    @task
-    def data_storing(df):
-        return store_data(df)
-    
-    data_store = data_storing(data_load)
-    
-workshop2_dag = workshop2_dag()
+    read_csv = PythonOperator(
+        task_id='read_csv',
+        python_callable=load_local_csv,
+        op_kwargs={'csv_path': '../data/external/spotify_dataset.csv'},
+    )
+
+    read_db = PythonOperator(
+        task_id='read_db',
+        python_callable=read_table_from_db,
+        op_kwargs={'table_name': 'grammys_raw'},
+    )
+
+    read_api = PythonOperator(
+        task_id='read_api',
+        python_callable=process_audio_dataset,
+    )
+
+    # Secuencia: puedes correrlas en paralelo o en serie
+    [read_csv, read_db, read_api]
