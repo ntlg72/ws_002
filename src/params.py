@@ -31,7 +31,8 @@ class Params:
     # pre-requeqs
 
     # magically load environment variables from any .env files
-    load_dotenv(os.path.abspath('../.env'))
+    BASE_DIR = Path(__file__).resolve().parent.parent
+    load_dotenv(BASE_DIR / '.env')
 
     # parameters
     raw_data = os.path.abspath('../data/raw/')

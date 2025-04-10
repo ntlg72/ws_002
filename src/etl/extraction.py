@@ -13,27 +13,47 @@ from src.params import Params
 from src.client import DatabaseClient
 from src.logging_config import setup_logging
 
-# Configuración inicial
+# Initial configuration
 setup_logging()
 params = Params()
 db_client = DatabaseClient(params)
 
-# Carpeta temporal
+# Temporary directory setup
 TEMP_DIR = os.path.join(tempfile.gettempdir(), "reccobeats_tmp")
 os.makedirs(TEMP_DIR, exist_ok=True)
 
-# Rutas dentro de la carpeta temporal
-AUDIO_DIR = "/home/bb-8/ws_002/data/audio_files"  # Este sigue fijo porque ya existen los archivos
+# Fixed directory where audio files already exist
+AUDIO_DIR = os.path.join(params.DATA_DIR, "audio_files")
+
+# Temporary subdirectories and file paths
 TRIMMED_DIR = os.path.join(TEMP_DIR, "trimmed")
 RECCOBEATS_JSON_PATH = os.path.join(TEMP_DIR, "reccobeats_features.json")
 RECCOBEATS_CSV_PATH = os.path.join(TEMP_DIR, "reccobeats_features.csv")
 
 def load_local_csv(csv_path: str) -> pd.DataFrame:
+    """
+    Loads a CSV file from a local path into a DataFrame.
+
+    Args:
+        csv_path (str): Absolute path to the CSV file.
+
+    Returns:
+        pd.DataFrame: DataFrame containing the loaded data.
+    """
     df = pd.read_csv(csv_path)
     logging.info(f"CSV loaded from {csv_path} with shape {df.shape}")
     return df
 
 def read_table_from_db(table_name: str) -> pd.DataFrame:
+    """
+    Reads a table from the configured database into a DataFrame.
+
+    Args:
+        table_name (str): Name of the table to read.
+
+    Returns:
+        pd.DataFrame: DataFrame containing the table data.
+    """
     try:
         df = pd.read_sql_table(table_name, con=db_client.engine)
         logging.info(f"Table '{table_name}' read with shape {df.shape}")
@@ -49,9 +69,28 @@ def read_table_from_db(table_name: str) -> pd.DataFrame:
             logging.error(f"Error details: {e}")
 
 def safe_filename(title: str) -> str:
+    """
+    Generates a filesystem-safe filename from a given title.
+
+    Args:
+        title (str): Original title string.
+
+    Returns:
+        str: Safe filename.
+    """
     return re.sub(r'[^\w\-_\(\)\s]', '', title).replace(" ", "_")
 
 def trim_audio(audio_path: str, output_dir: str = TRIMMED_DIR) -> str | None:
+    """
+    Trims the first 30 seconds of a given audio file using ffmpeg.
+
+    Args:
+        audio_path (str): Path to the original audio file.
+        output_dir (str): Directory where the trimmed audio will be saved.
+
+    Returns:
+        str | None: Path to the trimmed audio file, or None if trimming failed.
+    """
     os.makedirs(output_dir, exist_ok=True)
     base_name = os.path.basename(audio_path)
     trimmed_path = os.path.join(output_dir, f"{os.path.splitext(base_name)[0]}_trimmed.mp3")
@@ -70,6 +109,15 @@ def trim_audio(audio_path: str, output_dir: str = TRIMMED_DIR) -> str | None:
     return None
 
 def analyze_with_reccobeats(trimmed_path: str) -> tuple[dict | None, str | None]:
+    """
+    Sends a trimmed audio file to the ReccoBeats API for analysis.
+
+    Args:
+        trimmed_path (str): Path to the trimmed audio file.
+
+    Returns:
+        tuple[dict | None, str | None]: Features from API or error message.
+    """
     try:
         with open(trimmed_path, 'rb') as file:
             files = {'audioFile': (os.path.basename(trimmed_path), file, 'audio/mpeg')}
@@ -88,7 +136,15 @@ def analyze_with_reccobeats(trimmed_path: str) -> tuple[dict | None, str | None]
         return None, str(e)
 
 def process_audio_dataset() -> pd.DataFrame:
-    df = pd.read_csv("/home/bb-8/ws_002/data/intermediate/grammys.csv")
+    """
+    Processes a dataset of Grammy nominees, trims audio files, sends them to the ReccoBeats API,
+    and returns a DataFrame with nominees and extracted audio features.
+
+    Returns:
+        pd.DataFrame: DataFrame containing nominees and their extracted audio features.
+    """
+    input_path = os.path.join(params.intermediate_data, "grammys.csv")
+    df = pd.read_csv(input_path)
     filtered_df = df[df['normalized_category'].isin(['Song Of The Year', 'Record Of The Year'])]
     results = []
 
@@ -125,8 +181,11 @@ def process_audio_dataset() -> pd.DataFrame:
     return features_combined
 
 def clean_temp_dir():
+    """
+    Deletes the temporary directory used for trimmed audio and ReccoBeats outputs.
+    """
     try:
         shutil.rmtree(TEMP_DIR)
-        logging.info(f"Directorio temporal eliminado: {TEMP_DIR}")
+        logging.info(f"Temporary directory deleted: {TEMP_DIR}")
     except Exception as e:
-        logging.error(f"No se pudo eliminar el directorio temporal: {e}")
+        logging.error(f"Could not delete temporary directory: {e}")
