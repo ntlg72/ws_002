@@ -18,12 +18,12 @@ setup_logging()
 params = Params()
 db_client = DatabaseClient(params)
 
-# Temporary directory for processing
-TEMP_DIR = params.intermediate_data / "temp"
+# Define a temporary directory under data/intermediate
+TEMP_DIR = Path(params.intermediate_data) / "temp"
 TEMP_DIR.mkdir(parents=True, exist_ok=True)
 
 # Fixed directory where audio files already exist
-AUDIO_DIR = params.AUDIO_DIR
+AUDIO_DIR = params.DATA_DIR / "audio_files"
 
 # Temporary subdirectories and file paths
 TRIMMED_DIR = TEMP_DIR / "trimmed"
@@ -93,7 +93,7 @@ def trim_audio(audio_path: str, output_dir: Path = TRIMMED_DIR) -> str | None:
     """
     output_dir.mkdir(parents=True, exist_ok=True)
     base_name = os.path.basename(audio_path)
-    trimmed_path = output_dir / f"{os.path.splitext(base_name)[0]}_trimmed.mp3"
+    trimmed_path = output_dir / f"{Path(base_name).stem}_trimmed.mp3"
 
     try:
         subprocess.run([
@@ -160,7 +160,7 @@ def process_audio_dataset() -> pd.DataFrame:
         trimmed = trim_audio(str(audio_path))
         if trimmed:
             features, error = analyze_with_reccobeats(trimmed)
-            os.remove(trimmed)
+            Path(trimmed).unlink(missing_ok=True)
         else:
             features, error = None, "Trimmed audio not found"
 
