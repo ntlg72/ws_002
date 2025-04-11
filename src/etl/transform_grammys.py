@@ -4,8 +4,13 @@ import re
 from rapidfuzz import process
 from src.params import Params
 from pathlib import Path
+import sys
+
+
+sys.path.append(str(Path(__file__).resolve().parents[2])) 
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+
 
 params = Params()
 TEMP_DIR = Path(params.intermediate_data) / "temp"

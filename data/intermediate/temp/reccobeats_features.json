@@ -471,8 +471,18 @@
   },
   {
     "nominee": "Sunny Came Home",
-    "features": null,
-    "error": "429 Too Many Requests"
+    "features": {
+      "acousticness": 0.4098,
+      "danceability": 0.6066,
+      "energy": 0.4097,
+      "instrumentalness": 0.8607,
+      "liveness": 0.115,
+      "loudness": -12.9391,
+      "speechiness": 0.0472,
+      "tempo": 152.0983,
+      "valence": 0.3618
+    },
+    "error": null
   },
   {
     "nominee": "Change The World",
@@ -1226,8 +1236,18 @@
   },
   {
     "nominee": "Days Of Wine And Roses",
-    "features": null,
-    "error": "429 Too Many Requests"
+    "features": {
+      "acousticness": 0.7853,
+      "danceability": 0.6182,
+      "energy": 0.2269,
+      "instrumentalness": 0.008,
+      "liveness": 0.1332,
+      "loudness": -12.8414,
+      "speechiness": 0.0539,
+      "tempo": 107.4637,
+      "valence": 0.4083
+    },
+    "error": null
   },
   {
     "nominee": "I Left My Heart In San Francisco",

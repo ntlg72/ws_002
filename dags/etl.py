@@ -2,6 +2,7 @@ from datetime import datetime, timedelta
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from airflow.operators.empty import EmptyOperator
+from airflow.providers.google.suite.transfers.local_to_drive import LocalFilesystemToGoogleDriveOperator
 import sys, os
 
 # Add src al path
@@ -75,17 +76,20 @@ with DAG(
     load_db = PythonOperator(
     task_id='load_to_postgres',
     python_callable=load_to_database,
-)
-
-    upload_drive = PythonOperator(
-    task_id='upload_to_drive',
-    python_callable=upload_to_drive,
-    op_kwargs={'local_path': Path(params.processed_data) / "final_data.csv"}
     )
+
+    upload_to_drive = LocalFilesystemToGoogleDriveOperator(
+    task_id='upload_to_drive',
+    local_paths=[str(Path(params.processed_data) / 'final_data.csv')],  # Debe ser lista
+    drive_folder='root',  # Usa 'root' si quieres subirlo a "Mi unidad", o especifica folder_id
+    gcp_conn_id='google_cloud_default'
+    )
+
+
 
     # --- Pipeline structure ---
     extract_spotify >> transform_spotify
     extract_grammy >> transform_grammy
     extract_api >> transform_api
 
-    [transform_spotify, transform_grammy, transform_api] >> merge_data >> [load_db, upload_drive]
+    [transform_spotify, transform_grammy, transform_api] >> merge_data >> [load_db, upload_to_drive]

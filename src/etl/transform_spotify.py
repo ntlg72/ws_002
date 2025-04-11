@@ -1,14 +1,17 @@
 import pandas as pd
-import numpy as np
 import logging
-from src.params import Params
 from pathlib import Path
+import sys
 
+
+sys.path.append(str(Path(__file__).resolve().parents[2])) 
+
+from src.params import Params
 params = Params()
 
 # Setup logging
-# Setup logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+
 
 # Paths
 TEMP_DIR = Path(params.intermediate_data) / "temp"

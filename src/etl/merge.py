@@ -4,6 +4,10 @@ import numpy as np
 import logging
 from pathlib import Path
 from src.params import Params
+import sys
+
+
+sys.path.append(str(Path(__file__).resolve().parents[2])) 
 
 params = Params()
 TEMP_DIR = Path(params.intermediate_data) / "temp"

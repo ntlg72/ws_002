@@ -6,6 +6,10 @@ from src.client import DatabaseClient
 from src.logging_config import setup_logging
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
+import sys
+
+
+sys.path.append(str(Path(__file__).resolve().parents[2])) 
 
 # Setup
 setup_logging()
@@ -30,23 +34,3 @@ def load_to_database():
             db_client.close()
         except Exception as e:
             logging.warning(f"Failed to close database connection: {e}")
-
-def upload_to_drive():
-    """
-    Uploads the final transformed dataset to Google Drive using PyDrive.
-    """
-    try:
-        final_path = Path(params.processed_data) / "final_data.csv"
-
-        gauth = GoogleAuth()
-        gauth.LocalWebserverAuth()  # Authentication through browser
-        drive = GoogleDrive(gauth)
-
-        file_drive = drive.CreateFile({'title': 'final_data.csv'})
-        file_drive.SetContentFile(str(final_path))
-        file_drive.Upload()
-
-        logging.info("Final dataset successfully uploaded to Google Drive.")
-
-    except Exception as e:
-        logging.error(f"Failed to upload file to Google Drive: {e}")
