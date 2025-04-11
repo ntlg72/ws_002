@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 from airflow import DAG
 from airflow.operators.python import PythonOperator
+from airflow.operators.empty import EmptyOperator
 import sys
 import os
 
@@ -8,7 +9,9 @@ import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 # Importar funciones y parámetros
-from src.etl.extraction import load_local_csv, read_table_from_db, process_audio_dataset
+from src.etl.extraction import *
+from src.etl.transform_spotify import *
+from src.etl.transform_grammy import *
 from src.params import Params
 
 params = Params()  # Instancia para acceder a rutas
@@ -48,4 +51,24 @@ with DAG(
         python_callable=process_audio_dataset,
     )
 
-    [read_csv, read_db, read_api]
+    transform_csv = PythonOperator(
+    task_id='transform_csv',
+    python_callable=transform_spotify_dataset,
+    provide_context=True
+    )
+
+    transform_db = PythonOperator(
+    task_id='transform_grammys',
+    python_callable=transform_grammy_dataset,
+    provide_context=True
+    )
+    
+    transform_api = EmptyOperator(
+    task_id='transform_api'
+)
+
+    read_csv >> transform_csv
+    read_db >> transform_db
+    read_api >> transform_api
+    [transform_csv, transform_db, ]
+
