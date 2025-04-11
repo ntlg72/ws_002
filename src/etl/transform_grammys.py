@@ -13,7 +13,7 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(
 
 
 params = Params()
-TEMP_DIR = Path(params.intermediate_data) / "temp"
+TEMP_DIR = Path(params.external_data) 
 INPUT_PATH = TEMP_DIR / "grammys_loaded.csv"
 OUTPUT_PATH = Path(params.intermediate_data) / "grammys_transformed.csv"
 

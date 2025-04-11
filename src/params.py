@@ -35,6 +35,7 @@ class Params:
     # Specific dataset paths
     GRAMMYS_CSV = intermediate_data / "grammys.csv"
     SPOTIFY_DATASET_PATH = external_data / "spotify_dataset.csv"
+    FINAL_DATA = processed_data / "final_data.csv"
 
     # Logs
     log_name = BASE_DIR / "log" / "dump.log"

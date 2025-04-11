@@ -10,7 +10,8 @@ import sys
 sys.path.append(str(Path(__file__).resolve().parents[2])) 
 
 params = Params()
-TEMP_DIR = Path(params.intermediate_data) / "temp"
+TEMP_DIR = Path(params.intermediate_data) 
+TEMP_DIR_2 = Path(params.external_data)
 MERGED_OUTPUT = Path(params.processed_data) / "final_data.csv"
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
@@ -82,7 +83,7 @@ def merge_and_enrich_datasets():
     Loads datasets from TEMP_DIR, performs merging and enrichment, and saves result to processed folder.
     """
     spotify = pd.read_csv(TEMP_DIR / "spotify_transformed.csv")
-    api = pd.read_csv(TEMP_DIR / "reccobeats_features.csv")
+    api = pd.read_csv(TEMP_DIR_2 / "reccobeats_features.csv")
     grammy = pd.read_csv(TEMP_DIR / "grammys_transformed.csv")
 
     merged = merge_spotify_with_api(spotify, api)

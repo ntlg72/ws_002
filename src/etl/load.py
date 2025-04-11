@@ -4,8 +4,8 @@ from pathlib import Path
 from src.params import Params
 from src.client import DatabaseClient
 from src.logging_config import setup_logging
-from pydrive.auth import GoogleAuth
-from pydrive.drive import GoogleDrive
+from googleapiclient.discovery import build
+from google.oauth2.service_account import Credentials
 import sys
 
 
@@ -34,3 +34,25 @@ def load_to_database():
             db_client.close()
         except Exception as e:
             logging.warning(f"Failed to close database connection: {e}")
+
+
+# Configura las credenciales
+SCOPES = ['https://www.googleapis.com/auth/drive']
+SERVICE_ACCOUNT_FILE = '/ruta/a/tu/archivo.json'
+
+credentials = Credentials.from_service_account_file(
+    SERVICE_ACCOUNT_FILE, scopes=SCOPES)
+
+service = build('drive', 'v3', credentials=credentials)
+
+# Listar archivos
+results = service.files().list(
+    pageSize=10, fields="files(id, name)").execute()
+files = results.get('files', [])
+
+if not files:
+    print("No se encontraron archivos.")
+else:
+    print("Archivos encontrados:")
+    for file in files:
+        print(f"Nombre: {file['name']}, ID: {file['id']}")
