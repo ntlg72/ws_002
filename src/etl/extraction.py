@@ -31,43 +31,53 @@ TRIMMED_DIR = TEMP_DIR / "trimmed"
 RECCOBEATS_JSON_PATH = TEMP_DIR / "reccobeats_features.json"
 RECCOBEATS_CSV_PATH = TEMP_DIR / "reccobeats_features.csv"
 
-def load_local_csv(csv_path: str) -> pd.DataFrame:
+def load_local_csv(csv_path: str) -> str:
     """
-    Loads a CSV file from a local path into a DataFrame.
+    Loads a CSV file from a local path into a DataFrame and saves it to a temporary path.
 
     Args:
         csv_path (str): Absolute path to the CSV file.
 
     Returns:
-        pd.DataFrame: DataFrame containing the loaded data.
+        str: Path to the saved transformed CSV file.
     """
     df = pd.read_csv(csv_path)
     logging.info(f"CSV loaded from {csv_path} with shape {df.shape}")
-    return df
+    
+    output_path = TEMP_DIR / "spotify_loaded.csv"
+    df.to_csv(output_path, index=False)
+    logging.info(f"CSV saved to temporary path: {output_path}")
+    return str(output_path)
 
-def read_table_from_db(table_name: str) -> pd.DataFrame:
+def read_table_from_db(table_name: str) -> str:
     """
-    Reads a table from the configured database into a DataFrame.
+    Reads a table from the configured database into a DataFrame and saves it to a temporary path.
 
     Args:
         table_name (str): Name of the table to read.
 
     Returns:
-        pd.DataFrame: DataFrame containing the table data.
+        str: Path to the saved CSV file.
     """
     try:
         df = pd.read_sql_table(table_name, con=db_client.engine)
         logging.info(f"Table '{table_name}' read with shape {df.shape}")
-        return df
+        
+        output_path = TEMP_DIR / "grammys_loaded.csv"
+        df.to_csv(output_path, index=False)
+        logging.info(f"Database table saved to: {output_path}")
+        return str(output_path)
+
     except Exception as e:
         logging.warning(f"Failed to read from DB: {e}")
-        return pd.DataFrame()
+        return ""
     finally:
         try:
             db_client.close()
         except Exception as e:
             logging.error("Failed to close DB connection")
             logging.error(f"Error details: {e}")
+
 
 def safe_filename(title: str) -> str:
     """
