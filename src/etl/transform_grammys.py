@@ -121,7 +121,7 @@ def transform_grammy_dataset(**kwargs):
     df = update_artist_from_workers_advanced(df)
     df = normalize_categories(df, reference_categories)
 
-    grammy = df.drop_duplicates(subset=['year', 'normalized_category'], keep='first')
-    grammy.to_csv(OUTPUT_PATH, index=False)
+    df = df.drop_duplicates(subset=['year', 'normalized_category'], keep='first')
+    df.to_csv(OUTPUT_PATH, index=False)
 
     logging.info(f"Transformed Grammy dataset saved to: {OUTPUT_PATH}")
