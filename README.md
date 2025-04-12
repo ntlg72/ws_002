@@ -464,7 +464,7 @@ To integrate Google Drive with Airflow, follow these steps:
     
     ```
 
-## Manually Trigger the DAG **
+## Manually Trigger the DAG 
 
 If you want to trigger the `etl_full_pipeline_dag` manually:
 
