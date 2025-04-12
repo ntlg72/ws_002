@@ -57,13 +57,6 @@ with DAG(
         execution_timeout=default_timeout,
     )
 
-    """ extract_api = PythonOperator(
-        task_id='extract_api',
-        python_callable=load_local_api,
-        op_kwargs={'csv_path': str(params.FINAL_DATA)},
-        execution_timeout=default_timeout,
-    )"""
-
 
     extract_api = PythonOperator(
         task_id='extract_api',
