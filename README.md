@@ -19,7 +19,7 @@ Project Organization
 --------
 
 
-# Workshop 2: ETL process using airflow
+# ETL process using airflow
 By **Natalia López Gallego**
 
 ## Overview
