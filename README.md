@@ -24,7 +24,7 @@ By **Natalia López Gallego**
 
 ## Overview
 
-During this poject the Spotifyfy dataset was sourced from a CSV file, processed using Python and Airflow to perform necessary transformations, and subsequently loaded into a database. At the same me, the Grammys dataset was uploaded to a database, with Airflow employed to retrieve data from it. Furthermore, Airflow facilitated the extraction of audio features from an audio source via the Recocobeats API. Transformations were applied across all three datasets, which were then merged and loaded into a database as well as the Drive associated with a service account on Google Cloud Pla orm (GCP). Redash was used to make visualizations based on the relationonship between acousti  characteristics of the Grammy Award winning songs in “Record of the Year” and “Song of the Year” categories (obtained via API) VS those of the Non-Grammy Award winning songs from Spo fy data. We answer: Do winners share dis nct acousti  profiles?, Can we predict winners using audio features?
+ETL pipeline to integrate Spotify data (from CSV), Grammy winners data (uploaded to DB), and extracted audio features via the Recocobeats API. Airflow handled orchestration, enabling the merging and transformation of these heterogeneous sources. The Recocobeats API was used to retrieve high-quality, track-level audio descriptors not available in the raw datasets — making it possible to compare the acoustic profiles of Grammy-winning songs with non-winners. Final outputs were stored in PostgreSQL and Google Cloud Drive, with Redash used for visual insights on whether sound features can predict award outcomes.
 
 Technologies utilized in this project include:
 
